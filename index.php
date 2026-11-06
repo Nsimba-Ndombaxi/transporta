@@ -42,49 +42,59 @@
                 <p class="nota-destaque">Crie a sua conta e escolha o serviço de que precisa.</p>
             </div>
 
-            <div class="ilustracao" aria-hidden="true">
-                <div class="ilustracao-fundo"></div>
-                <div class="cartao-percurso">
-                    <div class="cartao-cabecalho">
-                        <span class="cartao-sinal"><span></span> O seu próximo percurso</span>
-                        <span class="cartao-mais">•••</span>
-                    </div>
-                    <div class="percurso">
-                        <div class="percurso-pontos">
-                            <span class="ponto-origem"></span>
-                            <span class="percurso-linha"></span>
-                            <span class="ponto-destino"></span>
-                        </div>
-                        <div class="percurso-locais">
-                            <div><span>ORIGEM</span><strong>Onde começa</strong></div>
-                            <div><span>DESTINO</span><strong>Onde precisa de chegar</strong></div>
-                        </div>
-                    </div>
-                    <div class="ilustracao-estrada">
-                        <svg viewBox="0 0 360 128" role="presentation">
-                            <path class="estrada-sombra" d="M-25 111C39 111 46 37 124 48s92 74 157 45 45-51 108-52" />
-                            <path class="estrada-traco" d="M-25 111C39 111 46 37 124 48s92 74 157 45 45-51 108-52" />
-                        </svg>
-                        <span class="pin pin-inicio"><span></span></span>
-                        <span class="pin pin-fim"><span></span></span>
-                        <div class="veiculo">
-                            <svg viewBox="0 0 64 42" role="presentation">
-                                <path d="M8 11a5 5 0 0 1 5-5h26a5 5 0 0 1 4.7 3.3L48 20h5a5 5 0 0 1 5 5v8a3 3 0 0 1-3 3h-3a8 8 0 0 0-16 0H27a8 8 0 0 0-16 0H8a4 4 0 0 1-4-4V15a4 4 0 0 1 4-4Z" fill="currentColor" />
-                                <path d="m43 13 3 8H34v-9h7a2 2 0 0 1 2 1Z" fill="#fffaf8" opacity=".8" />
-                                <circle cx="19" cy="36" r="5" fill="#24323a" />
-                                <circle cx="44" cy="36" r="5" fill="#24323a" />
-                            </svg>
-                        </div>
-                        <span class="brilho brilho-um"></span>
-                        <span class="brilho brilho-dois"></span>
-                    </div>
-                    <div class="cartao-rodape">
-                        <span class="rodape-icone">✳</span>
-                        <span>O seu pedido, ao seu ritmo.</span>
-                        <span class="rodape-seta">↗</span>
-                    </div>
-                </div>
-                <div class="selo-ilustracao"><span>3</span><span>formas de<br>seguir caminho</span></div>
+            <div class="fundo-percurso" aria-hidden="true">
+                <svg class="fundo-animado" viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                        <linearGradient id="percurso-suave" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#f8eeea" />
+                            <stop offset="1" stop-color="#f1f5f0" />
+                        </linearGradient>
+                        <pattern id="grelha-mapa" width="44" height="44" patternUnits="userSpaceOnUse">
+                            <path d="M44 0H0V44" fill="none" stroke="#e9e9e3" stroke-width="1" />
+                        </pattern>
+                    </defs>
+
+                    <rect width="1440" height="760" fill="url(#grelha-mapa)" opacity=".34" />
+                    <path class="rua-secundaria" d="M650 770C735 660 845 685 922 620s142-86 255-40 176 8 318-75" />
+                    <path class="rua-secundaria" d="M938 770c48-101 146-132 180-225s7-166 105-249 158-61 217-103" />
+                    <path class="estrada-borda" d="M710 680c70-105 29-165 132-225s189-40 292 18 183 45 240-55 33-170 132-222" />
+                    <path class="estrada-base" d="M710 680c70-105 29-165 132-225s189-40 292 18 183 45 240-55 33-170 132-222" />
+                    <path class="estrada-centro" d="M710 680c70-105 29-165 132-225s189-40 292 18 183 45 240-55 33-170 132-222" />
+                    <path id="rota-reboque" class="rota-veiculo" d="M710 680c70-105 29-165 132-225s189-40 292 18 183 45 240-55 33-170 132-222" />
+                    <path id="rota-autocarro" class="rota-veiculo" d="M650 670C735 570 845 600 922 540s142-78 255-35 176 8 318-68" />
+                    <path id="rota-materiais" class="rota-veiculo" d="M938 680c48-90 146-120 180-205s7-150 105-225 158-55 217-92" />
+                    <circle class="marco-mapa" cx="944" cy="473" r="10" />
+                    <circle class="marco-mapa marco-mapa--destino" cx="1372" cy="495" r="10" />
+
+                    <g class="veiculo-mapa veiculo-mapa--reboque">
+                        <animateMotion dur="22s" begin="-9s" repeatCount="indefinite" rotate="auto">
+                            <mpath href="#rota-reboque" />
+                        </animateMotion>
+                        <path d="M-25-10h27l9 8v15h-7a7 7 0 0 0-14 0h-5a7 7 0 0 0-14 0h-4V-5a5 5 0 0 1 5-5Z" fill="#d72e3f" />
+                        <path d="M4-7h-8v7h15L4-7Z" fill="#fffaf8" opacity=".9" />
+                        <circle cx="-12" cy="13" r="4" fill="#26353d" />
+                        <circle cx="4" cy="13" r="4" fill="#26353d" />
+                    </g>
+                    <g class="veiculo-mapa veiculo-mapa--autocarro">
+                        <animateMotion dur="30s" begin="-17s" repeatCount="indefinite" rotate="auto">
+                            <mpath href="#rota-autocarro" />
+                        </animateMotion>
+                        <rect x="-35" y="-12" width="70" height="25" rx="6" fill="#557c64" />
+                        <path d="M-27-8h12v8h-12zm16 0h12v8h-12zm16 0h12v8H5z" fill="#fffaf8" opacity=".9" />
+                        <path d="M-28 7h6m43 0h6" stroke="#fffaf8" stroke-width="2" stroke-linecap="round" />
+                        <circle cx="-22" cy="13" r="4" fill="#26353d" />
+                        <circle cx="23" cy="13" r="4" fill="#26353d" />
+                    </g>
+                    <g class="veiculo-mapa veiculo-mapa--materiais">
+                        <animateMotion dur="26s" begin="-12s" repeatCount="indefinite" rotate="auto">
+                            <mpath href="#rota-materiais" />
+                        </animateMotion>
+                        <path d="M-28-12h34a5 5 0 0 1 5 5v7h13a5 5 0 0 1 5 5v8H20a7 7 0 0 0-14 0h-16a7 7 0 0 0-14 0h-5V-7a5 5 0 0 1 5-5Z" fill="#b88747" />
+                        <path d="M12-7h-8v9h17l-3-7a3 3 0 0 0-3-2h-3Z" fill="#fffaf8" opacity=".9" />
+                        <circle cx="-17" cy="13" r="4" fill="#26353d" />
+                        <circle cx="13" cy="13" r="4" fill="#26353d" />
+                    </g>
+                </svg>
             </div>
         </section>
 
@@ -180,7 +190,7 @@
             <span>transporta<span class="marca-ponto">.</span></span>
         </a>
         <p>Encontramos o caminho certo para si.</p>
-        <div class="rodape-links"><a href="./login.php">Entrar</a><a href="./cadastrar-se.php">Criar conta</a></div>
+        <div class="rodape-links"><a href="./login.php">Login</a><a href="./cadastrar-se.php">Criar conta</a></div>
     </footer>
     <script src="./public/js/index.js"></script>
 </body>

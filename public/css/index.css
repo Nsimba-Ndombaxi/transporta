@@ -144,18 +144,106 @@ a:focus-visible {
 }
 
 .destaque {
-  width: min(1120px, calc(100% - 64px));
+  position: relative;
+  isolation: isolate;
+  width: 100%;
   min-height: 605px;
-  margin: 0 auto;
-  padding: 78px 0 88px;
-  display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
-  align-items: center;
-  gap: 38px;
+  overflow: hidden;
+  padding: 78px max(32px, calc((100% - 1120px) / 2)) 88px;
+  background:
+    radial-gradient(ellipse at 78% 48%, #fff8f4 0, rgb(255 248 244 / 0%) 48%),
+    #fff;
 }
 
 .destaque-conteudo {
+  position: relative;
+  z-index: 1;
+  width: min(570px, 55%);
   animation: entrar-suave 700ms var(--ease-out) both;
+}
+
+.fundo-percurso {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fundo-animado {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  mask-image: linear-gradient(90deg, transparent 0%, transparent 33%, rgb(0 0 0 / 42%) 49%, #000 70%);
+}
+
+.rua-secundaria {
+  fill: none;
+  stroke: #e8e8e1;
+  stroke-width: 3px;
+}
+
+.estrada-borda,
+.estrada-base,
+.estrada-centro {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.estrada-borda {
+  stroke: #fff;
+  stroke-width: 90px;
+}
+
+.estrada-base {
+  stroke: url("#percurso-suave");
+  stroke-width: 72px;
+}
+
+.estrada-centro {
+  stroke: rgb(215 46 63 / 38%);
+  stroke-dasharray: 3 17;
+  stroke-width: 3px;
+  animation: tracar-percurso 18s linear infinite;
+}
+
+.rota-veiculo {
+  fill: none;
+  stroke: none;
+}
+
+.marco-mapa {
+  fill: #fff;
+  stroke: #d72e3f;
+  stroke-width: 4px;
+}
+
+.marco-mapa--destino {
+  stroke: #557c64;
+}
+
+.veiculo-mapa {
+  filter: drop-shadow(0 5px 5px rgb(34 45 42 / 20%));
+}
+
+.veiculo-mapa--reboque {
+  color: #d72e3f;
+}
+
+.veiculo-mapa--autocarro {
+  color: #557c64;
+}
+
+.veiculo-mapa--materiais {
+  color: #b88747;
+}
+
+@keyframes tracar-percurso {
+  to {
+    stroke-dashoffset: -120px;
+  }
 }
 
 .etiqueta,
@@ -228,276 +316,6 @@ a:focus-visible {
   margin-top: 17px;
   color: #82878b;
   font-size: 15px;
-}
-
-.ilustracao {
-  position: relative;
-  min-width: 0;
-  min-height: 410px;
-  display: grid;
-  place-items: center;
-  animation: entrar-suave 800ms 70ms var(--ease-out) both;
-}
-
-.ilustracao-fundo {
-  position: absolute;
-  width: min(92%, 460px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff0eb 0, #fff8f4 52%, rgb(255 248 244 / 0%) 72%);
-}
-
-.cartao-percurso {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 440px);
-  overflow: hidden;
-  border: 1px solid #f0e9e5;
-  border-radius: 24px;
-  background: #fff;
-  box-shadow: 0 28px 75px rgb(51 40 35 / 11%), 0 5px 15px rgb(51 40 35 / 4%);
-  transform: rotate(-2deg);
-}
-
-.cartao-cabecalho {
-  padding: 22px 24px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #f2efed;
-}
-
-.cartao-sinal {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: #555e62;
-  font-size: 16px;
-}
-
-.cartao-sinal > span {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #67b78d;
-}
-
-.cartao-mais {
-  color: #9da2a5;
-  letter-spacing: 2px;
-}
-
-.percurso {
-  padding: 18px 24px 8px;
-  display: flex;
-  gap: 13px;
-}
-
-.percurso-pontos {
-  width: 14px;
-  padding: 5px 0 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.ponto-origem,
-.ponto-destino {
-  width: 10px;
-  height: 10px;
-  flex: 0 0 auto;
-  border: 2px solid #df5360;
-  border-radius: 50%;
-}
-
-.ponto-destino {
-  border-color: #263c48;
-  border-radius: 2px;
-  transform: rotate(45deg);
-}
-
-.percurso-linha {
-  width: 1px;
-  height: 26px;
-  border-left: 1px dashed #d5d4d1;
-}
-
-.percurso-locais {
-  flex: 1;
-  display: grid;
-  gap: 12px;
-}
-
-.percurso-locais div {
-  display: grid;
-  gap: 1px;
-}
-
-.percurso-locais div + div {
-  padding-top: 10px;
-  border-top: 1px solid #f2efed;
-}
-
-.percurso-locais span {
-  color: #a0a4a6;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-.percurso-locais strong {
-  color: #303b40;
-  font-size: 17px;
-  font-weight: 400;
-}
-
-.ilustracao-estrada {
-  position: relative;
-  height: 144px;
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at 18% 82%, #fff0e9 0, transparent 26%),
-    radial-gradient(ellipse at 77% 36%, #eef5f1 0, transparent 31%),
-    linear-gradient(135deg, #fcfaf8, #f8faf8);
-}
-
-.ilustracao-estrada svg {
-  position: absolute;
-  inset: 5px 0 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.estrada-sombra,
-.estrada-traco {
-  fill: none;
-  stroke-linecap: round;
-}
-
-.estrada-sombra {
-  stroke: #fff;
-  stroke-width: 15px;
-}
-
-.estrada-traco {
-  stroke: #e7a19c;
-  stroke-dasharray: 4 8;
-  stroke-width: 2px;
-}
-
-.pin {
-  position: absolute;
-  z-index: 1;
-  width: 15px;
-  height: 15px;
-  display: grid;
-  place-items: center;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  background: var(--cor1);
-  box-shadow: 0 2px 6px rgb(32 35 42 / 12%);
-}
-
-.pin-inicio {
-  bottom: 15px;
-  left: 17%;
-}
-
-.pin-fim {
-  top: 24px;
-  right: 17%;
-  background: #496d5a;
-}
-
-.pin span {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: white;
-}
-
-.veiculo {
-  position: absolute;
-  z-index: 1;
-  top: 34px;
-  left: 48%;
-  width: 57px;
-  color: var(--cor1);
-  filter: drop-shadow(0 5px 3px rgb(32 35 42 / 15%));
-  transform: rotate(-12deg);
-}
-
-.brilho {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #e7bd72;
-}
-
-.brilho-um {
-  top: 28px;
-  left: 29%;
-}
-
-.brilho-dois {
-  right: 30%;
-  bottom: 18px;
-  width: 5px;
-  height: 5px;
-  background: #9bb9a4;
-}
-
-.cartao-rodape {
-  min-height: 55px;
-  padding: 0 22px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #60686c;
-  font-size: 14px;
-}
-
-.rodape-icone {
-  color: var(--cor1);
-  font-size: 19px;
-}
-
-.rodape-seta {
-  margin-left: auto;
-  color: #8e9699;
-}
-
-.selo-ilustracao {
-  position: absolute;
-  z-index: 2;
-  right: -3px;
-  bottom: 34px;
-  width: 128px;
-  height: 78px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 1px solid #f1e8e4;
-  border-radius: 15px;
-  background: #fff;
-  box-shadow: 0 12px 30px rgb(51 40 35 / 9%);
-  transform: rotate(3deg);
-}
-
-.selo-ilustracao span:first-child {
-  color: var(--cor1);
-  font-size: 37px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.selo-ilustracao span:last-child {
-  color: #60686c;
-  font-size: 12px;
-  line-height: 1.15;
 }
 
 .secao {
@@ -799,26 +617,17 @@ a:focus-visible {
 
 @media (max-width: 900px) {
   .destaque {
-    min-height: 550px;
-    grid-template-columns: 1fr 0.9fr;
-    gap: 16px;
+    min-height: 560px;
+    padding-top: 72px;
+    padding-bottom: 78px;
+  }
+
+  .destaque-conteudo {
+    width: min(530px, 58%);
   }
 
   .destaque h1 {
     font-size: clamp(48px, 6.3vw, 62px);
-  }
-
-  .ilustracao {
-    min-height: 360px;
-  }
-
-  .cartao-percurso {
-    width: 100%;
-  }
-
-  .selo-ilustracao {
-    right: -10px;
-    bottom: 20px;
   }
 
   .como-funciona {
@@ -828,11 +637,22 @@ a:focus-visible {
 
 @media (max-width: 700px) {
   .navegacao,
-  .destaque,
   .secao,
   .chamada-final,
   .rodape {
     width: min(100% - 40px, 540px);
+  }
+
+  .destaque {
+    min-height: 610px;
+    padding: 58px 20px 70px;
+  }
+
+  .fundo-animado {
+    inset: auto 0 0 auto;
+    width: 200%;
+    height: 55%;
+    mask-image: linear-gradient(180deg, transparent 0%, #000 75%);
   }
 
   .navegacao {
@@ -844,9 +664,12 @@ a:focus-visible {
   }
 
   .destaque {
-    padding: 66px 0 70px;
-    grid-template-columns: 1fr;
-    gap: 25px;
+    padding-top: 66px;
+    padding-bottom: 70px;
+  }
+
+  .destaque-conteudo {
+    width: min(100%, 540px);
   }
 
   .destaque h1 {
@@ -856,20 +679,6 @@ a:focus-visible {
 
   .destaque-descricao {
     max-width: 500px;
-  }
-
-  .ilustracao {
-    width: min(100%, 500px);
-    min-height: 380px;
-    margin: 0 auto;
-  }
-
-  .cartao-percurso {
-    width: min(100%, 440px);
-  }
-
-  .selo-ilustracao {
-    right: max(0px, calc((100% - 440px) / 2 - 12px));
   }
 
   .servicos {
@@ -934,11 +743,16 @@ a:focus-visible {
   }
 
   .navegacao,
-  .destaque,
   .secao,
   .chamada-final,
   .rodape {
     width: calc(100% - 32px);
+  }
+
+  .destaque {
+    min-height: 590px;
+    padding-right: 16px;
+    padding-left: 16px;
   }
 
   .marca {
@@ -980,29 +794,6 @@ a:focus-visible {
     gap: 16px;
   }
 
-  .ilustracao {
-    min-height: 325px;
-  }
-
-  .cartao-cabecalho {
-    padding: 18px 17px 14px;
-  }
-
-  .percurso {
-    padding: 14px 17px 6px;
-  }
-
-  .cartao-rodape {
-    padding: 0 16px;
-  }
-
-  .selo-ilustracao {
-    right: -4px;
-    bottom: 8px;
-    width: 116px;
-    height: 70px;
-  }
-
   .cartao-servico {
     padding: 22px 20px;
   }
@@ -1026,5 +817,14 @@ a:focus-visible {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .veiculo-mapa {
+    display: none;
+  }
+
+  .estrada-centro {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 }
