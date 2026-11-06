@@ -21,7 +21,7 @@
             </a>
 
             <div class="navegacao-acoes">
-                <a class="link-entrar" href="./login.php">Entrar</a>
+                <a class="link-entrar" href="./login.php">Login</a>
                 <a class="botao botao-pequeno" href="./cadastrar-se.php">Criar conta <span aria-hidden="true">↗</span></a>
             </div>
         </nav>
