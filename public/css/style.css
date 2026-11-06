@@ -1,5 +1,5 @@
 :root {
-  --cor1: #d72e3f;
+  --cor1: #dd5260;
   --cor2: #20232a;
   --cor3: #f3f9fa;
 
@@ -39,6 +39,7 @@ main {
 }
 
 .formulario form {
+ 
   display: flex;
   justify-content: center;
   flex-direction: column;
