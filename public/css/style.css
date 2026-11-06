@@ -1,0 +1,300 @@
+:root {
+  --cor1: #d72e3f;
+  --cor2: #20232a;
+  --cor3: #f3f9fa;
+
+  --cor4: #162d3a;
+  --cor5: #99aef5;
+  --cor6: #ffffff;
+}
+
+@font-face {
+  font-family: "jaldi";
+  src: url(../font/Jaldi-Regular.ttf);
+}
+
+* {
+  font-family: "jaldi";
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  background-color: var(--cor6);
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.formulario {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formulario form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 500px;
+  width: 320px;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.info img {
+  width: 60px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.info span {
+  color: var(--cor1);
+}
+
+.input {
+  font-weight: 500;
+  margin: 8px 0;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+}
+
+.input input {
+  width: 100%;
+  border-radius: 8px;
+  font-size: 18px;
+  padding: 2px;
+  background-color: var(--cor3);
+  outline: none;
+  border: 2px solid #d5d9dc;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.esqueci-senha {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  padding: 10px 0;
+}
+
+.esqueci-senha p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.entrar {
+  width: 100%;
+}
+
+.entrar input {
+  font-weight: 500;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 15px;
+  padding: 5px;
+  background-color: var(--cor1);
+  outline: none;
+  border: 2px solid #d5d9dc;
+  color: var(--cor6);
+  cursor: pointer;
+}
+
+.outra-forma {
+  margin: 30px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.forma {
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  height: 45px;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: var(--cor3);
+  border: 2px solid #d5d9dc;
+}
+
+.forma img {
+  width: 30px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.sem-conta {
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+}
+
+.animacao {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 16px 16px 0;
+}
+.mapa-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 54px;
+}
+
+.mapa-introducao h2 {
+  color: var(--cor4);
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.mapa-introducao p {
+  color: #64727a;
+  font-size: 15px;
+}
+
+#localizar-me {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 16px;
+  background-color: var(--cor1);
+  color: var(--cor6);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#localizar-me:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+#estado-localizacao {
+  color: #64727a;
+}
+
+#mapa {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #dfe7e8;
+  border-radius: 10px;
+  background-color: var(--cor3);
+  box-shadow: 0 12px 32px rgb(22 45 58 / 12%);
+}
+
+.leaflet-control-zoom a {
+  color: var(--cor4) !important;
+}
+
+.leaflet-control-zoom a:hover {
+  color: var(--cor1) !important;
+}
+
+.leaflet-control-scale-line {
+  border-color: #64727a;
+  color: var(--cor4);
+  background: rgb(255 255 255 / 90%);
+}
+
+.marcador-utilizador {
+  position: relative;
+  z-index: 0;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #2388e8;
+  box-shadow: 0 2px 8px rgb(22 45 58 / 35%);
+}
+
+.marcador-utilizador::after {
+  position: absolute;
+  z-index: -1;
+  inset: -9px;
+  border: 2px solid rgb(35 136 232 / 45%);
+  border-radius: 50%;
+  content: "";
+  animation: pulso-localizacao 1.8s ease-out infinite;
+}
+
+@keyframes pulso-localizacao {
+  from {
+    transform: scale(0.65);
+    opacity: 0.9;
+  }
+
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  main {
+    min-height: 100vh;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .formulario {
+    width: 100%;
+    padding: 32px 16px;
+  }
+
+  .formulario form {
+    height: auto;
+  }
+
+  .animacao {
+    width: 100%;
+    height: 48vh;
+    min-height: 340px;
+    padding: 0 16px 16px;
+  }
+
+  .mapa-cabecalho {
+    gap: 10px;
+  }
+
+  .mapa-introducao h2 {
+    font-size: 20px;
+  }
+
+  #localizar-me {
+    padding: 8px 12px;
+    font-size: 15px;
+  }
+}
